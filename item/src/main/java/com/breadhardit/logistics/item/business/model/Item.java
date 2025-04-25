@@ -1,12 +1,17 @@
 package com.breadhardit.logistics.item.business.model;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.util.UUID;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Item {
-    final String id;
+    @Builder.Default
+    final String id = UUID.randomUUID().toString();
+    @With
     String name;
-    Location location;
 }
