@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: item
+  data:
+    mongodb:
+      database: items
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 6.0.5
