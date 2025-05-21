@@ -6,6 +6,7 @@ import com.breadhardit.logistics.item.application.comand.UpdateItemCommand;
 import com.breadhardit.logistics.item.application.port.ItemRepositoryPort;
 import com.breadhardit.logistics.item.application.query.GetAllItemsQuery;
 import com.breadhardit.logistics.item.application.query.GetItemByIdQuery;
+import com.breadhardit.logistics.item.domain.DuplicatedItemException;
 import com.breadhardit.logistics.item.domain.InvalidItemException;
 import com.breadhardit.logistics.item.domain.ItemNotFoundException;
 import com.breadhardit.logistics.item.domain.Item;
@@ -45,7 +46,7 @@ public class ItemController {
                     .name(itemDto.getName())
                     .build().handle();
             return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri()).build();
-        } catch (DataIntegrityViolationException e) {
+        } catch (DuplicatedItemException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         } catch (InvalidItemException e) {
             return ResponseEntity.unprocessableEntity().build();

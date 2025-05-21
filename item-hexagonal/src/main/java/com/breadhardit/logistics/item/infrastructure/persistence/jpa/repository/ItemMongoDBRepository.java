@@ -8,3 +8,4 @@ import java.util.List;
 public interface ItemMongoDBRepository extends MongoRepository<ItemEntity, String> {
     List<ItemEntity> findByName(String name);
 }
+

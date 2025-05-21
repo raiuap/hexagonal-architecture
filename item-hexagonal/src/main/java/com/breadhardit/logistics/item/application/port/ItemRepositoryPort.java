@@ -11,4 +11,5 @@ public interface ItemRepositoryPort {
     void deleteItem(String id);
     void updateItem(Item item);
     String createItem(Item item);
+    Optional<Item> getItemByName(String name);
 }
