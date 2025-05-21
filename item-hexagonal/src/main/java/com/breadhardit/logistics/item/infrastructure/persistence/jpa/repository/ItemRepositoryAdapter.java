@@ -13,31 +13,31 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemRepositoryAdapter implements ItemRepositoryPort {
     final ItemEntityMapper itemEntityMapper;
-    final ItemJpaRepository itemJpaRepository;
+    final ItemMongoDBRepository itemMongoDBRepository;
 
     @Override
     public List<Item> getItems() {
-        return itemJpaRepository.findAll().stream().map(itemEntityMapper::toDomain).toList();
+        return itemMongoDBRepository.findAll().stream().map(itemEntityMapper::toDomain).toList();
     }
 
     @Override
     public Optional<Item> getItemById(String id) {
-        return itemJpaRepository.findById(id).map(itemEntityMapper::toDomain);
+        return itemMongoDBRepository.findById(id).map(itemEntityMapper::toDomain);
     }
 
     @Override
     public void deleteItem(String id) {
-        itemJpaRepository.deleteById(id);
+        itemMongoDBRepository.deleteById(id);
     }
 
     @Override
     public void updateItem(Item item) {
-        itemJpaRepository.save(itemEntityMapper.fromDomain(item));
+        itemMongoDBRepository.save(itemEntityMapper.fromDomain(item));
     }
 
     @Override
     public String createItem(Item item) {
-        itemJpaRepository.save(itemEntityMapper.fromDomain(item));
+        itemMongoDBRepository.save(itemEntityMapper.fromDomain(item));
         return item.getId();
     }
 }

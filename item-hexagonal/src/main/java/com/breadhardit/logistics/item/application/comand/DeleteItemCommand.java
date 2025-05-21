@@ -3,15 +3,15 @@ package com.breadhardit.logistics.item.application.comand;
 import com.breadhardit.logistics.item.application.port.ItemRepositoryPort;
 import com.breadhardit.logistics.item.domain.InvalidItemException;
 import com.breadhardit.logistics.item.domain.ItemNotFoundException;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.UUID;
 
 @SuperBuilder
 public class DeleteItemCommand {
     final ItemRepositoryPort itemRepository;
-    @NotNull
+    @NonNull
     final String id;
     public void handle() throws InvalidItemException, ItemNotFoundException {
         try {
